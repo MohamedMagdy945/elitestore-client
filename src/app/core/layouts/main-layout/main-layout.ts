@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { Footer } from '../../../shared/components/footer/footer';
-import { Navbar } from '../../../shared/components/navbar/navbar';
+import { Footer } from '../footer/footer';
+import { Navbar } from '../navbar/navbar';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { isPlatformBrowser } from '@angular/common';

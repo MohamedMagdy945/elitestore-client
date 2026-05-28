@@ -3,3 +3,20 @@
 @plugin "flowbite/plugin";
 
 @source "../node_modules/flowbite";
+
+
+@theme {
+   --color-primary: #16a34a;
+   --color-secondary: #101828;
+   --color-danger: #fb2c36;
+   --primary-hover: #16a34a;
+
+}
+
+body {
+    font-family: 'Exo' , 'sans-serif';
+}
+
+.hover-primary:hover {
+  color: var(--primary-hover);
+}
