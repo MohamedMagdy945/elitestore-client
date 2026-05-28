@@ -5,11 +5,13 @@ import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { isPlatformBrowser } from '@angular/common';
 import { FlowbiteService } from '../../services/flowbite.service';
+import { Home } from '../../../features/home/pages/home/home';
 
 @Component({
   selector: 'app-main-layout',
   imports: [
     Navbar,
+    Home,
     Footer
   ],
   templateUrl: './main-layout.html',
