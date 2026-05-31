@@ -28,12 +28,12 @@
                     <div>
                         <div class="relative">
                             <i class="fa-regular fa-user text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-                            <input formControlName="name" id="fullName" type="text" autocomplete="name"
+                            <input formControlName="fullName" id="fullName" type="text" autocomplete="name"
                                 placeholder="Enter your name"
                                 class="w-full pl-11 pr-4 py-3.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition" />
                         </div>
 
-                        @let nameControl = registerForm.get('name');
+                        @let nameControl = registerForm.get('fullName');
                         @if (nameControl?.invalid && nameControl?.touched) {
 
                         <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"
@@ -146,16 +146,16 @@
                 <!-- phone number input -->
                 <div>
                     <div class="relative">
-                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
 
                     </div>
                     <div>
                         <div class="relative">
                             <i class="fa-solid fa-phone text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-                            <input formControlName="phone" id="phone" type="text"
+                            <input formControlName="phoneNumber" id="phoneNumber" type="text"
                                 autocomplete="tel" placeholder="Enter your phone number"
                                 class="w-full pl-11 pr-11 py-3 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition" />
-                            @let phoneControl = registerForm.get('phone');
+                            @let phoneControl = registerForm.get('phoneNumber');
                         </div>
                         @if (phoneControl?.invalid && phoneControl?.touched) {
                         <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"

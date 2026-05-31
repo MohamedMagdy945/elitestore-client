@@ -4,19 +4,60 @@ import { RegisterRequest } from '../models/register-request.model';
 import { ApiResponse } from '../models/api-response.model';
 import { AuthResponse } from '../models/auth-response.model';
 import { environment } from '../../../environments/environment';
+import { Observable, tap } from 'rxjs';
+import { Router } from 'express';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private baseUrl = environment.apiUrl + 'api/v1/auth';
+  private baseUrl = environment.apiUrl + '/api/v1/auth';
+  private router = inject(Router); 
 
-   register(request: RegisterRequest) {
+  getAccessToken(): string | null {
+    return localStorage.getItem('accessToken');
+  }
+  setAccessToken(token: string): void {
+    if (token) {
+      localStorage.setItem('accessToken', token);
+    }
+  }
+
+  register(request: RegisterRequest) {
+    console.log(this.baseUrl);
     return this.http.post<ApiResponse<AuthResponse>>(
       `${this.baseUrl}/register`,
       request
     );
   }
+
+  refreshToken(): Observable<ApiResponse<AuthResponse>> {
+
+    return this.http.post<ApiResponse<AuthResponse>>(
+      `${this.baseUrl}/refresh`,
+      {}, // body فاضي
+      { withCredentials: true }
+    ).pipe(
+      tap((response: ApiResponse<AuthResponse>) => {
+        localStorage.setItem('accessToken', response.data.accessToken);
+      })
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('accessToken');
+
+    this.http.post(`${this.baseUrl}/logout`, {}, { withCredentials: true }).subscribe({
+      next: () => {
+        console.log('Backend logout success');
+      },
+      error: (err) => {
+        console.error('Backend logout failed', err);
+      }
+    });
+
+    this.router.navigate(['/login']);
+}
 
 }
