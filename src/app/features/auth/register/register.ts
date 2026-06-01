@@ -51,7 +51,6 @@ export class Register {
             console.log('Error:', err);
           }
         });
-
     }
   }
 }
