@@ -53,4 +53,15 @@ export class Register {
         });
     }
   }
+  testRefresh() {
+    this.authService.refreshToken().subscribe({
+      next: (res) => {
+        console.log('Refresh Success', res);
+      },
+      error: (err) => {
+        console.error('Refresh Failed', err);
+      }
+    });
+  }
+
 }

@@ -1,16 +1,137 @@
-<section class="flex flex-col md:flex-row min-h-[calc(100vh-100px)]">
-
+<section class="flex flex-col md:flex-row min-h-screen">
+ 
     <!-- Left Section -->
-    <div class="w-full md:w-[65%] bg-gray-100">
-        <h4 class="text-2xl font-bold text-center mt-10">
-            Welcome Back!
-        </h4>
+    <div class="hidden md:block w-full md:w-[65%] bg-gray-100 bg-cover pt-8 pb-10" style="background-image: url('assets/hero-bg.png')">
+        <div class="bg-cover bg-center bg-no-repeat flex items-center">
+            <div class="container mx-auto px-6 lg:px-16">
+ 
+                <div class="max-w-3xl">
+ 
+                    <!-- Badge -->
+                    <span class="inline-flex items-center px-5 py-2 rounded-full bg-green-100 text-green-700 font-semibold text-sm">
+                        ⭐ #1 Online Shopping Destination
+                    </span>
+ 
+                    <!-- Title -->
+                    <h1 class="mt-6 text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight text-slate-900">
+                        Everything You Need,
+                        <span class="block text-green-600">
+                            All In One Place
+                        </span>
+                    </h1>
+ 
+                    <!-- Description -->
+                    <p class="mt-6 text-base sm:text-lg text-slate-500 max-w-2xl">
+                        Shop from thousands of products across all categories with the
+                        best prices, fast delivery, and secure payments.
+                    </p>
+ 
+                    <!-- Categories -->
+                    <div class="bg-white rounded-2xl shadow-lg p-4 mt-6">
+                        <div class="grid grid-cols-4 sm:grid-cols-7 gap-3">
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-xl sm:text-2xl text-blue-500"></i>
+                                <span class="text-xs sm:text-sm font-medium">Electronics</span>
+                            </button>
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-shirt text-xl sm:text-2xl text-sky-500"></i>
+                                <span class="text-xs sm:text-sm font-medium">Fashion</span>
+                            </button>
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-couch text-xl sm:text-2xl text-amber-500"></i>
+                                <span class="text-xs sm:text-sm font-medium">Home & Living</span>
+                            </button>
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-lipstick text-xl sm:text-2xl text-pink-500"></i>
+                                <span class="text-xs sm:text-sm font-medium">Beauty</span>
+                            </button>
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-gamepad text-xl sm:text-2xl text-gray-700"></i>
+                                <span class="text-xs sm:text-sm font-medium">Gaming</span>
+                            </button>
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-watch-smart text-xl sm:text-2xl"></i>
+                                <span class="text-xs sm:text-sm font-medium">Accessories</span>
+                            </button>
+ 
+                            <button class="flex flex-col items-center gap-2">
+                                <i class="fa-solid fa-ellipsis text-xl sm:text-2xl"></i>
+                                <span class="text-xs sm:text-sm font-medium">More</span>
+                            </button>
+ 
+                        </div>
+                    </div>
+ 
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-3 sm:gap-5 mt-8">
+ 
+                        <!-- Products -->
+                        <div class="bg-white rounded-xl px-3 sm:px-4 py-3 shadow-md">
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-bag-shopping text-primary text-base sm:text-lg"></i>
+                                </div>
+                                <div class="leading-tight">
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">50K+</h3>
+                                    <p class="text-xs sm:text-sm text-slate-500">Products</p>
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <!-- Customers -->
+                        <div class="bg-white rounded-xl px-3 sm:px-4 py-3 shadow-md">
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-users text-primary text-base sm:text-lg"></i>
+                                </div>
+                                <div class="leading-tight">
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">10K+</h3>
+                                    <p class="text-xs sm:text-sm text-slate-500">Happy Customers</p>
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <!-- Support -->
+                        <div class="bg-white rounded-xl px-3 sm:px-4 py-3 shadow-md">
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-headset text-primary text-base sm:text-lg"></i>
+                                </div>
+                                <div class="leading-tight">
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">24/7</h3>
+                                    <p class="text-xs sm:text-sm text-slate-500">Support</p>
+                                </div>
+                            </div>
+                        </div>
+ 
+                    </div>
+ 
+                </div>
+ 
+                <!-- Buttons -->
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <button class="px-8 py-3 rounded-xl bg-green-600 text-white hover:bg-green-700 transition">
+                        Shop Now
+                    </button>
+                    <button class="px-8 py-3 rounded-xl border border-slate-300 hover:bg-white transition">
+                        Browse Products
+                    </button>
+                </div>
+ 
+            </div>
+        </div>
     </div>
-
+ 
     <!-- Right Section -->
-    <div class="w-full md:w-[40%] pt-15  px-8 bg-white flex justify-center items-start">
+    <div class="w-full md:w-[35%] py-10 px-6 sm:px-8 bg-white flex justify-center items-start">
         <div class="w-full max-w-lg space-y-4">
-
+ 
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-green-600 mb-3 tracking-tight">
                     ELITE<span class="text-secondary">STORE</span>
@@ -18,13 +139,13 @@
                 <h3 class="text-xl font-bold text-slate-800">WELCOME BACK!</h3>
                 <p class="text-sm text-gray-500 mt-1">Sign in to continue your fresh shopping experience</p>
             </div>
-
-
+ 
+ 
             <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-4">
-
+ 
                 <!-- name input -->
                 <div>
-                    <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1.5 ">Name</label>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
                     <div>
                         <div class="relative">
                             <i class="fa-regular fa-user text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
@@ -32,56 +153,44 @@
                                 placeholder="Enter your name"
                                 class="w-full pl-11 pr-4 py-3.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition" />
                         </div>
-
+ 
                         @let nameControl = registerForm.get('fullName');
                         @if (nameControl?.invalid && nameControl?.touched) {
-
-                        <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"
-                            role="alert">
+                        <div class="mt-2 p-3 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200" role="alert">
                             <span class="sr-only">Danger</span>
-                            <div>
-                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
-                                    @if (nameControl?.hasError('required')) {<li>Name is required.</li>}
-                                    @if (nameControl?.hasError('minlength')) {<li>Name must be at least 3 characters.
-                                    </li>}
-                                </ul>
-                            </div>
+                            <ul class="list-disc list-outside space-y-1 ps-2.5">
+                                @if (nameControl?.hasError('required')) {<li>Name is required.</li>}
+                                @if (nameControl?.hasError('minlength')) {<li>Name must be at least 3 characters.</li>}
+                            </ul>
                         </div>
                         }
                     </div>
                 </div>
-
-
+ 
                 <!-- email input -->
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5 ">Email</label>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
                     <div>
                         <div class="relative">
-                            <i
-                                class="fa-regular fa-envelope text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                            <i class="fa-regular fa-envelope text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
                             <input formControlName="email" id="email" type="email" autocomplete="email"
                                 placeholder="Enter your email"
                                 class="w-full pl-11 pr-4 py-3.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition" />
                         </div>
-
+ 
                         @let emailControl = registerForm.get('email');
                         @if (emailControl?.invalid && emailControl?.touched) {
-
-                        <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"
-                            role="alert">
+                        <div class="mt-2 p-3 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200" role="alert">
                             <span class="sr-only">Danger</span>
-                            <div>
-                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
-                                    @if (emailControl?.hasError('required')) {<li>Email is required.</li>}
-                                    @if (emailControl?.hasError('email')) {<li>Please enter a valid email.</li>}
-                                </ul>
-                            </div>
+                            <ul class="list-disc list-outside space-y-1 ps-2.5">
+                                @if (emailControl?.hasError('required')) {<li>Email is required.</li>}
+                                @if (emailControl?.hasError('email')) {<li>Please enter a valid email.</li>}
+                            </ul>
                         </div>
                         }
                     </div>
                 </div>
-
-
+ 
                 <!-- password input -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
@@ -94,29 +203,20 @@
                             @let passwordControl = registerForm.get('password');
                         </div>
                         @if (passwordControl?.invalid && passwordControl?.touched) {
-                        <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"
-                            role="alert">
+                        <div class="mt-2 p-3 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200" role="alert">
                             <span class="sr-only">Danger</span>
-                            <div>
-                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
-                                    @if (passwordControl?.hasError('required')) {<li>Password is required.</li>}
-                                    @if (passwordControl?.hasError('pattern')) {<li>Must contain at least 8 chars, 1
-                                        uppercase, 1 lowercase, 1 number, and 1 special </li>}
-
-                                </ul>
-                            </div>
+                            <ul class="list-disc list-outside space-y-1 ps-2.5">
+                                @if (passwordControl?.hasError('required')) {<li>Password is required.</li>}
+                                @if (passwordControl?.hasError('pattern')) {<li>Must contain at least 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special character.</li>}
+                            </ul>
                         </div>
                         }
                     </div>
                 </div>
-
+ 
                 <!-- reconfirm password input -->
                 <div>
-                    <div class="relative">
-                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm
-                            Password</label>
-
-                    </div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
                     <div>
                         <div class="relative">
                             <i class="fa-solid fa-lock text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
@@ -126,63 +226,54 @@
                             @let confirmPasswordControl = registerForm.get('confirmPassword');
                         </div>
                         @if (confirmPasswordControl?.invalid && confirmPasswordControl?.touched) {
-                        <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"
-                            role="alert">
+                        <div class="mt-2 p-3 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200" role="alert">
                             <span class="sr-only">Danger</span>
-                            <div>
-                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
-                                    @if (confirmPasswordControl?.hasError('required')) {<li>Please confirm your
-                                        password.</li>}
-                                    @if (confirmPasswordControl?.hasError('mismatch')) {<li>Passwords do not match.
-                                    </li>}
-
-                                </ul>
-                            </div>
+                            <ul class="list-disc list-outside space-y-1 ps-2.5">
+                                @if (confirmPasswordControl?.hasError('required')) {<li>Please confirm your password.</li>}
+                                @if (confirmPasswordControl?.hasError('mismatch')) {<li>Passwords do not match.</li>}
+                            </ul>
                         </div>
                         }
                     </div>
                 </div>
-
+ 
                 <!-- phone number input -->
                 <div>
-                    <div class="relative">
-                        <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
-
-                    </div>
+                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
                     <div>
                         <div class="relative">
                             <i class="fa-solid fa-phone text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-                            <input formControlName="phoneNumber" id="phoneNumber" type="text"
-                                autocomplete="tel" placeholder="Enter your phone number"
+                            <input formControlName="phoneNumber" id="phoneNumber" type="text" autocomplete="tel"
+                                placeholder="Enter your phone number"
                                 class="w-full pl-11 pr-11 py-3 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition" />
                             @let phoneControl = registerForm.get('phoneNumber');
                         </div>
                         @if (phoneControl?.invalid && phoneControl?.touched) {
-                        <div class="mt-4 p-4 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200"
-                            role="alert">
+                        <div class="mt-2 p-3 text-sm text-red-700 rounded-lg bg-red-50 border border-red-200" role="alert">
                             <span class="sr-only">Danger</span>
-                            <div>
-                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
-                                    @if (phoneControl?.hasError('required')) {<li>Please enter your phone number.</li>}
-                                    @if (phoneControl?.hasError('pattern')) {<li>Please enter a valid phone number.</li>}
-
-                                </ul>
-                            </div>
+                            <ul class="list-disc list-outside space-y-1 ps-2.5">
+                                @if (phoneControl?.hasError('required')) {<li>Please enter your phone number.</li>}
+                                @if (phoneControl?.hasError('pattern')) {<li>Please enter a valid phone number.</li>}
+                            </ul>
                         </div>
                         }
                     </div>
                 </div>
-
-
+ 
                 <div class="pt-2">
                     <button type="submit"
                         class="w-full cursor-pointer bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 rounded-lg transition duration-200">
-                        Sign In
+                        Sign Up
                     </button>
                 </div>
             </form>
-
+ 
+            <button (click)="testRefresh()">
+                Test Refresh Token
+            </button>
+ 
         </div>
     </div>
-
+ 
 </section>
+ 

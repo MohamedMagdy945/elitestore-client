@@ -28,7 +28,8 @@ export class AuthService {
     console.log(this.baseUrl);
     return this.http.post<ApiResponse<AuthResponse>>(
       `${this.baseUrl}/register`,
-      request
+      request,
+        { withCredentials: true }
     );
   }
 
@@ -36,15 +37,16 @@ export class AuthService {
     console.log(this.baseUrl);
     return this.http.post<ApiResponse<AuthResponse>>(
       `${this.baseUrl}/login`,
-      request
+      request,
+      { withCredentials: true }
     );
   }
 
   refreshToken(): Observable<ApiResponse<AuthResponse>> {
 
     return this.http.post<ApiResponse<AuthResponse>>(
-      `${this.baseUrl}/refresh`,
-      {}, // body فاضي
+      `${this.baseUrl}/refresh-token`,
+      {},
       { withCredentials: true }
     ).pipe(
       tap((response: ApiResponse<AuthResponse>) => {
