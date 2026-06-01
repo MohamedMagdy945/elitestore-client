@@ -6,6 +6,7 @@ import { AuthResponse } from '../models/auth/auth-response.model';
 import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoginRequest } from '../models/auth/login-request.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,6 +28,14 @@ export class AuthService {
     console.log(this.baseUrl);
     return this.http.post<ApiResponse<AuthResponse>>(
       `${this.baseUrl}/register`,
+      request
+    );
+  }
+
+  login(request: LoginRequest) {
+    console.log(this.baseUrl);
+    return this.http.post<ApiResponse<AuthResponse>>(
+      `${this.baseUrl}/login`,
       request
     );
   }
