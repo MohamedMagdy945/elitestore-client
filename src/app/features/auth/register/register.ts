@@ -39,6 +39,7 @@ export class Register {
       this.authService.register(this.registerForm.value)
         .subscribe({
           next: (res) => {
+            console.log(res);
             if (res.isSuccess) {
               localStorage.setItem('token', res.data.accessToken);
               console.log('Register Success');

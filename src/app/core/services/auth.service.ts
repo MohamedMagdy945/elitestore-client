@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { RegisterRequest } from '../models/register-request.model';
+import { RegisterRequest } from '../models/auth/register-request.model';
 import { ApiResponse } from '../models/api-response.model';
-import { AuthResponse } from '../models/auth-response.model';
+import { AuthResponse } from '../models/auth/auth-response.model';
 import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
-import { Router } from 'express';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
