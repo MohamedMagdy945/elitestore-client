@@ -26,7 +26,7 @@ export const routes: Routes = [
         ]
     },
     {
-       path: '',
+       path: 'admin',
         loadComponent: () =>
         import('./core/layouts/admin-layout/admin-layout').then(m => m.AdminLayout),
         canActivate: [], 
@@ -41,7 +41,7 @@ export const routes: Routes = [
             {
                 path: 'user',
                 loadComponent: () =>
-                    import('./features/admin/user/user').then(m => m.User),
+                    import('./features/admin/user.component/user.component').then(m => m.UserComponent),
                 title: 'Users Dashboard',
                 canActivate: [],
                 
