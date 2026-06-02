@@ -8,8 +8,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './admin-sidebar.css',
 })
 export class AdminSidebar {
-sidebarOpen: any;
+sidebarOpen: boolean =true;
 closeSidebar() {
-throw new Error('Method not implemented.');
-}
+  this.sidebarOpen = true;}
 }
