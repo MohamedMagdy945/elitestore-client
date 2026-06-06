@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserService } from '../../../core/services/user.service';
@@ -15,72 +15,75 @@ import { User } from '../../../core/models/user/user.model';
 export class UserComponent implements OnInit {
 
   users: User[] = [];
-
+  searchText = '';
+  roleFilter = '';
   private userService = inject(UserService);
-
+  private cdRef = inject(ChangeDetectorRef); // 1. حقن خدمة فحص التغييرات
   pagination: PaginationParams = {
     pageNumber: 1,
     pageSize: 10
   };
 
-  loading = false;
 
   ngOnInit(): void {
     this.getUsers();
   }
 
   getUsers(): void {
-    this.loading = true;
-
-  
-
     this.userService.GetUsersList(this.pagination).subscribe({
       next: (res) => {
-
         console.log('API Response:', res);
+        // 2. إزالة الـ setTimeout وتحديث المصفوفة مباشرة
+        this.users = [...res.data.items];
 
-        this.users = res.data.items;
-
-        this.loading = false;
+        // 3. إجبار أنجلر على تحديث الواجهة فوراً لمنع تعارض الحالات
+        this.cdRef.detectChanges();
       },
-
       error: (err) => {
         console.error(err);
         this.users = [];
-        this.loading = false;
+        this.cdRef.detectChanges();
       }
+    });
+  }
+  get filteredUsers(): User[] {
+    return this.users.filter(user => {
+      const matchSearch =
+        user.fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        user.email.toLowerCase().includes(this.searchText.toLowerCase());
+
+      const matchRole =
+        this.roleFilter ? user.role === this.roleFilter : true;
+
+      return matchSearch && matchRole;
     });
   }
 
   onSearch(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    console.log('search:', value);
+    this.searchText = (event.target as HTMLInputElement).value;
   }
 
   onRoleFilter(event: Event) {
-    const value = (event.target as HTMLSelectElement).value;
-    console.log('role:', value);
+    this.roleFilter = (event.target as HTMLSelectElement).value;
   }
 
-  getInitials(username: string): string {
-    if (!username) return '';
-    return username
-      .trim()
+  getInitials(name: string): string {
+    return name
       .split(' ')
-      .filter(Boolean)
-      .map(word => word[0].toUpperCase())
+      .map(n => n[0])
       .slice(0, 2)
-      .join('');
+      .join('')
+      .toUpperCase();
   }
-
-  formatDateToShort(date: string | Date): string {
-    if (!date) return '';
+  formatDateToShort(date: string): string {
     return new Date(date).toLocaleDateString();
   }
 
-  formatTime(date: string | Date): string {
-    if (!date) return '';
-    return new Date(date).toLocaleTimeString();
+  formatTime(date: string): string {
+    return new Date(date).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   }
 
   deleteUser(id: number) {
