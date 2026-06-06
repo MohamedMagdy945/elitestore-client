@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
-import { AdminLayout} from './core/layouts/admin-layout/admin-layout';
+import { AdminLayout } from './core/layouts/admin-layout/admin-layout';
 import { UserLayout } from './core/layouts/user-layout/user-layout';
 import { Register } from './features/auth/register/register';
 import { Login } from './features/auth/login/login';
 import { Home } from './shared/home/home';
-                    
+
 export const routes: Routes = [
     {
         path: '',
         component: UserLayout,
         children: [
             {
-                path: '',
+                path: 'home',
                 component: Home,
             },
             {
@@ -22,14 +22,20 @@ export const routes: Routes = [
                 path: 'register',
                 component: Register
             },
+            {
+                path: '',
+                redirectTo: 'home',
+                pathMatch: 'full'
+
+            }
 
         ]
     },
     {
-       path: 'admin',
+        path: 'admin',
         loadComponent: () =>
-        import('./core/layouts/admin-layout/admin-layout').then(m => m.AdminLayout),
-        canActivate: [], 
+            import('./core/layouts/admin-layout/admin-layout').then(m => m.AdminLayout),
+        canActivate: [],
         children: [
             {
                 path: 'content',
@@ -44,14 +50,14 @@ export const routes: Routes = [
                     import('./features/admin/user.component/user.component').then(m => m.UserComponent),
                 title: 'Users Dashboard',
                 canActivate: [],
-                
+
             },
-             {
+            {
                 path: 'product',
                 loadComponent: () =>
                     import('./features/admin/admin-product/admin-product').then(m => m.AdminProduct),
                 title: 'Products Dashboard',
-                canActivate: [],   
+                canActivate: [],
             },
         ]
     }

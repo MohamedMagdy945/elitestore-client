@@ -1,3 +1,6 @@
+import { Brand } from "./Brand.model";
+import { Category } from "./Category.model";
+
 export interface Product {
   id: number;
   name: string;
@@ -7,5 +10,5 @@ export interface Product {
   imageFile: string;
 
   brand: Brand;
-  type: ProductType;
+  type: Category;
 }
