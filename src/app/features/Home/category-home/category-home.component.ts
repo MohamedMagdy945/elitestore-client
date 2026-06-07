@@ -20,8 +20,8 @@ export class CategoryHomeComponents {
   getCategoriesData(): void {
     this.categoriesService.getCategories().subscribe({
       next: (res) => {
-        console.log(res);
-        this.categoriesList.set(res)
+      
+        this.categoriesList.set(res);
       },
       error: (err) => {
         console.log(err)

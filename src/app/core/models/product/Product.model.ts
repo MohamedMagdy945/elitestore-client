@@ -2,12 +2,17 @@ import { Brand } from "./Brand.model";
 import { Category } from "./Category.model";
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
+  title: string;
+  slug: string;
+
   description: string;
   summary: string;
   price: number;
-  imageFile: string;
+  imageUrl: string;
+  ratingsAverage: number;
+  ratingsQuantity: number;
 
   brand: Brand;
   type: Category;

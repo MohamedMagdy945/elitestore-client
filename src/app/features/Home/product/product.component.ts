@@ -5,7 +5,7 @@ import { CatalogService } from '../../../core/services/catalog.service';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
@@ -22,7 +22,6 @@ export class ProductComponent {
  getProductsData():void{
     this.catelogService.getProducts(this.pageIndex, this.pageSize).subscribe({
       next:(res)=>{
-        console.log(res.data);
         this.productList.set(res.data);
       },
       error:(err)=>{
@@ -31,13 +30,36 @@ export class ProductComponent {
         })
   }
 
-  wishlistIds() {
-    throw new Error('Method not implemented.');
+  addToWishlist(id: string): void {
+    // const isInWishlist = this.wishlistIds().includes(id);
+
+    // if (isInWishlist) {
+    //   this.wishlistService.removeProductFromWishlist(id).subscribe({
+    //     next: (res: any) => {
+    //       this.wishlistService.wishlistIds.set([...res.data]);
+    //       this.wishlistService.wishCount.set(res.data.length);
+    //     },
+    //   });
+    // } else {
+    //   this.wishlistService.addProuctToWishlist(id).subscribe({
+    //     next: (res: any) => {
+    //       this.wishlistService.wishlistIds.set([...res.data]);
+    //       this.wishlistService.wishCount.set(res.data.length);
+    //     },
+    //   });
+    // }
   }
-  addToWishlist(arg0: any) {
-    throw new Error('Method not implemented.');
-  }
-  addToCart(arg0: any) {
-    throw new Error('Method not implemented.');
+   addToCart(id:string):void{
+    console.log(id);
+   if(localStorage.getItem('AccessToken')){
+    //  this.cartService.addProductToCart(id).subscribe({
+    //   next:(res)=>{
+    //     this.cartService.cartCount.set(res.numOfCartItems)
+    //     this.toastrService.success(res.message , 'FreshCart' , {progressBar:true , closeButton:true})
+    //   },
+    // })
+   }else{
+      // this.toastrService.warning("Login first" , 'FreshCart' , {progressBar:true , closeButton:true})
+   }
   }
 }
