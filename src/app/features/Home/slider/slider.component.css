@@ -1,18 +1,22 @@
 .item {
   background-image:
-    linear-gradient(to right, #a7fbcd7c, #90fac58d), url(/assets/home-slider-1.d79601a8.png);
+    linear-gradient(to right, #e6f7ed4e, #b3ffd974), url(/assets/home-slider-1.d79601a8.png);
   background-size: cover;
   background-position: center;
 }
 .item2 {
   background-image:
-    linear-gradient(to right, #a7fbcd7c, #90fac58d), url(/assets/home-slider-1.d79601a9.png);
+    linear-gradient(to right, #e6f7ed4e, #b3ffd974  ), url(/assets/home-slider-1.d79601a9.png);
   background-size: cover;
   background-position: center;
 }
 .item3 {
-  background-image:
-    linear-gradient(to right, #a7fbcd7c, #90fac58d), url(/assets/home-slider-1.d79601a10.png);
+ background-image: linear-gradient(
+  to right,
+  rgba(255, 255, 255, 0.5),
+  #8afeab33
+),
+url(/assets/home-slider-1.d79601a10.png);
   background-size: cover;
   background-position: center;
 }

@@ -10,19 +10,20 @@ import { TwoStaticComponent } from '../two-static/two-static.component';
   styleUrl: './category-home.component.css',
 })
 export class CategoryHomeComponents {
-    private readonly categoriesService = inject(CatalogService);
+  private readonly categoriesService = inject(CatalogService);
 
-     categoriesList = signal<Category[]>([])
+  categoriesList = signal<Category[]>([])
   ngOnInit(): void {
     this.getCategoriesData();
   }
 
-  getCategoriesData():void {
+  getCategoriesData(): void {
     this.categoriesService.getCategories().subscribe({
-      next:(res)=> {
+      next: (res) => {
+        console.log(res);
         this.categoriesList.set(res)
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err)
       }
     })
