@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { CatalogService } from '../../../core/services/catalog.service';
 import { Category } from '../../../core/models/product/Category.model';
+import { TwoStaticComponent } from '../two-static/two-static.component';
 
 @Component({
-  selector: 'app-category-home.components',
-  imports: [],
+  selector: 'app-category-home',
+  imports: [TwoStaticComponent],
   templateUrl: './category-home.component.html',
   styleUrl: './category-home.component.css',
 })
