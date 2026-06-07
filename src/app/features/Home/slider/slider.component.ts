@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StaticItemsComponent } from '../static-items/static-items.component';
 
 @Component({
@@ -6,5 +6,7 @@ import { StaticItemsComponent } from '../static-items/static-items.component';
   imports: [StaticItemsComponent],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.css',
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class SliderComponent {}
