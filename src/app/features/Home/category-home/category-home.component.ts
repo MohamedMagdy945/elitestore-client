@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CatalogService } from '../../../core/services/catalog.service';
 import { Category } from '../../../core/models/product/Category.model';
 import { TwoStaticComponent } from '../two-static/two-static.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-category-home',
@@ -11,7 +12,7 @@ import { TwoStaticComponent } from '../two-static/two-static.component';
 })
 export class CategoryHomeComponents {
   private readonly categoriesService = inject(CatalogService);
-
+  readonly baseUrl = environment.apiUrl ;
   categoriesList = signal<Category[]>([])
   ngOnInit(): void {
     this.getCategoriesData();
