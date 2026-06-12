@@ -16,7 +16,7 @@ export class AuthService {
   private router = inject(Router); 
 
   getAccessToken(): string | null {
-    return localStorage.getItem('accessToken');
+    return localStorage.getItem('token');
   }
   setAccessToken(token: string): void {
     if (token) {
@@ -71,7 +71,6 @@ export class AuthService {
 }
 isLoggedIn(): boolean {
   const token = this.getAccessToken();
-
   if (!token) {
     return false;
   }

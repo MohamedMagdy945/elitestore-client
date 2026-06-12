@@ -43,6 +43,7 @@ export class ProductComponent {
 
 
   addToCart(product: Product): void {
+    console.log(this.authService.isLoggedIn());
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
       return;
