@@ -1,9 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Product } from '../../../core/models/product/Product.model';
 import { CatalogService } from '../../../core/services/catalog.service';
 import { environment } from '../../../../environments/environment';
 import { DecimalPipe } from '@angular/common';
+import { AuthService } from '../../../core/services/auth.service';
+import { BasketService } from '../../../core/services/basket.service';
+import { BasketItem } from '../../../core/models/basket/BasketItem.model';
 
 @Component({
   selector: 'app-product',
@@ -14,27 +17,81 @@ import { DecimalPipe } from '@angular/common';
 export class ProductComponent {
 
   private readonly catelogService = inject(CatalogService);
+  private readonly router = inject(Router);
+  private readonly basketService = inject(BasketService);
+  private readonly authService = inject(AuthService);
   productList = signal<Product[]>([])
   private pageIndex = 1;
   private pageSize = 20;
-  readonly baseUrl = environment.apiUrl ;
-  
+  readonly baseUrl = environment.apiUrl;
+
   ngOnInit(): void {
     this.getProductsData();
   }
-  
- getProductsData():void{
+
+  getProductsData(): void {
     this.catelogService.getProducts(this.pageIndex, this.pageSize).subscribe({
-      next:(res)=>{
+      next: (res) => {
         this.productList.set(res.data);
         console.log(res.data)
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err)
       },
-        })
+    })
   }
 
+
+  addToCart(product: Product): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const userName = this.authService.getCurrentUser();
+
+    this.basketService.getBasket(userName).subscribe({
+      next: (basket) => {
+
+        if (!basket) {
+          basket = {
+            userName: userName,
+            items: []
+          };
+        }
+
+        const existingItem = basket.items.find(
+          (x: BasketItem) => x.productId === product.id
+        );
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          basket.items.push({
+            productId: product.id,
+            productName: product.name,
+            price: product.price,
+            imageFile: product.imageUrls[0],
+            quantity: 1
+          });
+        }
+
+        // IMPORTANT: send full basket
+        this.basketService.createBasket(basket).subscribe({
+          next: () => {
+            console.log('Basket updated');
+          },
+          error: err => {
+            console.error(err);
+          }
+        });
+
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+  }
   addToWishlist(id: string): void {
     // const isInWishlist = this.wishlistIds().includes(id);
 
@@ -54,17 +111,5 @@ export class ProductComponent {
     //   });
     // }
   }
-   addToCart(id:string):void{
-    console.log(id);
-   if(localStorage.getItem('AccessToken')){
-    //  this.cartService.addProductToCart(id).subscribe({
-    //   next:(res)=>{
-    //     this.cartService.cartCount.set(res.numOfCartItems)
-    //     this.toastrService.success(res.message , 'FreshCart' , {progressBar:true , closeButton:true})
-    //   },
-    // })
-   }else{
-      // this.toastrService.warning("Login first" , 'FreshCart' , {progressBar:true , closeButton:true})
-   }
-  }
 }
+
