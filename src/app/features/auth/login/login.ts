@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { BasketService } from '../../../core/services/basket.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
-
+  private readonly basketService = inject(BasketService);
   loginForm: FormGroup = this.fb.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]]
@@ -26,7 +27,11 @@ export class Login {
             console.log(res);
             if (res.isSuccess) {
               localStorage.setItem('token', res.data.accessToken);
-              console.log('Login Success');
+              const user = this.authService.getCurrentUser();
+              
+              if (user) {
+                this.basketService.loadBasketCount(user.email);
+              }
             } else {
               console.log(res.message);
             }

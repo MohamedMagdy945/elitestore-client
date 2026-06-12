@@ -42,23 +42,29 @@ export class ProductComponent {
 
 
   addToCart(product: Product): void {
-    console.log(this.authService.isLoggedIn());
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
       return;
     }
 
-    const email = this.authService.getCurrentUser();
-    
-    this.basketService.getBasket(email).subscribe({
-      next: (basket) => {
+    const email = this.authService.getCurrentUser()?.email;
 
+    if (!email) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.basketService.getBasket(email).subscribe({
+
+      next: (basket) => {
+        console.log(basket);
         if (!basket) {
           basket = {
             email: email,
             items: []
           };
         }
+        console.log(basket);
 
         const existingItem = basket.items.find(
           (x: BasketItem) => x.productId === product.id
@@ -80,6 +86,7 @@ export class ProductComponent {
         this.basketService.createBasket(basket).subscribe({
           next: () => {
             console.log('Basket updated');
+            
           },
           error: err => {
             console.error(err);
