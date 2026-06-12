@@ -1,0 +1,20 @@
+.hero {
+  background-image: url('/assets/hero-bg2.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  
+}
+
+/* dark overlay to reduce opacity of image */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.07); 
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+}

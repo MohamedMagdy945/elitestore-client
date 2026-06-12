@@ -69,5 +69,27 @@ export class AuthService {
 
     this.router.navigate(['/login']);
 }
+isLoggedIn(): boolean {
+  const token = this.getAccessToken();
 
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.exp * 1000 > Date.now();
+  } catch {
+    return false;
+  }
+}
+getCurrentUser() {
+  const token = this.getAccessToken();
+
+  if (!token) return null;
+
+  const payload = JSON.parse(atob(token.split('.')[1]));
+
+  return payload;
+}
 }
