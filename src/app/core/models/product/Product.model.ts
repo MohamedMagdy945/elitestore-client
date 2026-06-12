@@ -4,13 +4,12 @@ import { Category } from "./Category.model";
 export interface Product {
   id: string;
   name: string;
-  title: string;
   slug: string;
 
   description: string;
   summary: string;
   price: number;
-  ImageUrls : string[];
+  imageUrls : string[];
   ratingsAverage: number;
   ratingsQuantity: number;
 

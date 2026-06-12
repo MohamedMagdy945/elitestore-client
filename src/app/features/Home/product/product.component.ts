@@ -2,10 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../../core/models/product/Product.model';
 import { CatalogService } from '../../../core/services/catalog.service';
+import { environment } from '../../../../environments/environment';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
-  imports: [RouterLink],
+  imports: [RouterLink, DecimalPipe],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
@@ -15,6 +17,8 @@ export class ProductComponent {
   productList = signal<Product[]>([])
   private pageIndex = 1;
   private pageSize = 20;
+  readonly baseUrl = environment.apiUrl ;
+  
   ngOnInit(): void {
     this.getProductsData();
   }
@@ -23,6 +27,7 @@ export class ProductComponent {
     this.catelogService.getProducts(this.pageIndex, this.pageSize).subscribe({
       next:(res)=>{
         this.productList.set(res.data);
+        console.log(res.data)
       },
       error:(err)=>{
         console.log(err)
