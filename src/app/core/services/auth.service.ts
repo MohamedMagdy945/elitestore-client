@@ -7,13 +7,15 @@ import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../models/auth/login-request.model';
+import { User } from '../models/user/user.model';
+import { CurrentUser } from '../models/user/currentuser.model';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
   private baseUrl = environment.apiUrl + '/api/v1/auth';
-  private router = inject(Router); 
+  private router = inject(Router);
 
   getAccessToken(): string | null {
     return localStorage.getItem('token');
@@ -29,7 +31,7 @@ export class AuthService {
     return this.http.post<ApiResponse<AuthResponse>>(
       `${this.baseUrl}/register`,
       request,
-        { withCredentials: true }
+      { withCredentials: true }
     );
   }
 
@@ -68,27 +70,38 @@ export class AuthService {
     });
 
     this.router.navigate(['/login']);
-}
-isLoggedIn(): boolean {
-  const token = this.getAccessToken();
-  if (!token) {
-    return false;
   }
+  isLoggedIn(): boolean {
+    const token = this.getAccessToken();
+    if (!token) {
+      return false;
+    }
 
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.exp * 1000 > Date.now();
-  } catch {
-    return false;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.exp * 1000 > Date.now();
+    } catch {
+      return false;
+    }
   }
-}
-getCurrentUser() {
+  getCurrentUser(): CurrentUser | null {
   const token = this.getAccessToken();
 
   if (!token) return null;
 
-  const payload = JSON.parse(atob(token.split('.')[1]));
+  try {
+    const payloadBase64 = token.split('.')[1];
+    const payload = JSON.parse(atob(payloadBase64));
 
-  return payload;
+    return {
+      id: payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"] ?? '',
+      name: payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] ?? '',
+      email: payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"] ?? ''
+    };
+
+  } catch (error) {
+    console.error('Invalid token:', error);
+    return null;
+  }
 }
 }

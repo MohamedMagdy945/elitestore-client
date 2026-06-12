@@ -33,7 +33,6 @@ export class ProductComponent {
     this.catelogService.getProducts(this.pageIndex, this.pageSize).subscribe({
       next: (res) => {
         this.productList.set(res.data);
-        console.log(res.data)
       },
       error: (err) => {
         console.log(err)
@@ -49,14 +48,14 @@ export class ProductComponent {
       return;
     }
 
-    const userName = this.authService.getCurrentUser();
-
-    this.basketService.getBasket(userName).subscribe({
+    const email = this.authService.getCurrentUser();
+    
+    this.basketService.getBasket(email).subscribe({
       next: (basket) => {
 
         if (!basket) {
           basket = {
-            userName: userName,
+            email: email,
             items: []
           };
         }
