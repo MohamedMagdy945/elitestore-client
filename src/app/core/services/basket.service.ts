@@ -14,6 +14,10 @@ export class BasketService {
 
   private basketCountSource = new BehaviorSubject<number>(0);
   basketCount$ = this.basketCountSource.asObservable();
+
+  private basketSource = new BehaviorSubject<Basket | null>(null);
+  basket$ = this.basketSource.asObservable();
+
   setBasketCount(count: number) {
     this.basketCountSource.next(count);
   }
@@ -24,27 +28,30 @@ export class BasketService {
   createBasket(basket: Basket): Observable<any> {
     return this.http.post(`${this.basketUrl}/CreateBasket`, basket).pipe(
       tap((result: any) => {
-        const count = result?.items?.reduce(
-          (sum: number, item: any) => sum + item.quantity,
-          0
-        ) ?? 0;
+        const count = result?.items?.length ?? 0;
 
         this.basketCountSource.next(count);
       })
     );
   }
-
   getBasket(email: string): Observable<Basket | null> {
-    return this.http.get<Basket | null>(`${this.basketUrl}/GetBasket/${email}`);
+    return this.http
+      .get<Basket | null>(`${this.basketUrl}/GetBasket/${email}`)
+      .pipe(
+        tap(basket => this.basketSource.next(basket))
+      );
+  }
+   setBasket(basket: Basket | null) {
+    this.basketSource.next(basket);
+  }
+  get basket(): Basket | null {
+  return this.basketSource.value;
   }
 
   loadBasketCount(email: string) {
     this.getBasket(email).subscribe({
       next: basket => {
-        const count = basket?.items?.reduce(
-          (sum, item) => sum + item.quantity,
-          0
-        ) ?? 0;
+        const count = basket?.items?.length ?? 0;
 
         this.basketCountSource.next(count);
       },

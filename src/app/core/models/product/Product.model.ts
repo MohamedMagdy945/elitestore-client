@@ -14,5 +14,5 @@ export interface Product {
   ratingsQuantity: number;
 
   brand: Brand;
-  type: Category;
+  category: Category;
 }
