@@ -61,7 +61,8 @@ export class ProductComponent {
         if (!basket) {
           basket = {
             email: email,
-            items: []
+            items: [],
+            totalPrice: 0
           };
         }
         console.log(basket);

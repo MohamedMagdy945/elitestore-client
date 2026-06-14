@@ -18,6 +18,8 @@ export class AuthService {
   private router = inject(Router);
 
   getAccessToken(): string | null {
+    if (typeof window === 'undefined') return null;
+
     return localStorage.getItem('token');
   }
   setAccessToken(token: string): void {

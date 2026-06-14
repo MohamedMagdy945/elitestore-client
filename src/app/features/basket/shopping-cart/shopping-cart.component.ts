@@ -3,6 +3,7 @@ import { BasketService } from '../../../core/services/basket.service';
 import { Basket } from '../../../core/models/basket/basket.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,9 +12,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './shopping-cart.component.css',
 })
 export class ShoppingCartComponent implements OnInit {
-update(arg0: string,arg1: number) {
+placeOrder() {
 throw new Error('Method not implemented.');
 }
+  update(arg0: string, arg1: number) {
+    throw new Error('Method not implemented.');
+  }
 
 
   private readonly basketService = inject(BasketService);
@@ -21,6 +25,8 @@ throw new Error('Method not implemented.');
   private readonly authService = inject(AuthService);
 
   private readonly id = inject(PLATFORM_ID);
+
+  readonly baseUrl = environment.apiUrl;
 
 
   private email = this.authService.getCurrentUser()?.email!;
@@ -31,7 +37,7 @@ throw new Error('Method not implemented.');
       this.basket.set(basket);
     });
   }
- 
+
 
   removeItem(arg0: any) {
     throw new Error('Method not implemented.');
