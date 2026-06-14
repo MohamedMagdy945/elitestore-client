@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Basket } from '../models/basket/basket.model';
+import { CheckoutRequest } from '../models/basket/checkout-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,11 +42,11 @@ export class BasketService {
         tap(basket => this.basketSource.next(basket))
       );
   }
-   setBasket(basket: Basket | null) {
+  setBasket(basket: Basket | null) {
     this.basketSource.next(basket);
   }
   get basket(): Basket | null {
-  return this.basketSource.value;
+    return this.basketSource.value;
   }
 
   loadBasketCount(email: string) {
@@ -60,4 +61,14 @@ export class BasketService {
       }
     });
   }
+
+  checkout(model: CheckoutRequest): Observable<any> {
+  return this.http.post<any>(`${this.baseUrl}/checkout`, model).pipe(
+    tap(() => {
+      this.basketCountSource.next(0);
+      this.basketSource.next(null);
+    })
+  );
 }
+}
+

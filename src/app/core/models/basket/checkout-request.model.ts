@@ -1,4 +1,4 @@
-export interface Checkout {
+export interface CheckoutRequest {
   userName: string;
   totalPrice: number;
 
