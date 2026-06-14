@@ -9,7 +9,7 @@
         <h1>Shopping Cart</h1>
       </div>
       <p class="text-gray-500 text-lg">
-        You have <span class="font-bold text-[#138D46]">{{basket?.items?.length}} items</span> in your cart
+        You have <span class="font-bold text-[#138D46]">{{ basket()?.items?.length}} items</span> in your cart
       </p>
     </div>
 
@@ -17,7 +17,7 @@
       <!-- !---------------------- Left side  !---------------------- -->
       <div class="lg:col-span-8 flex flex-col gap-5">
         <!-- ?------------- item ?------------- -->
-        @for (item of basket?.items; track item.product._id) {
+        @for (item of basket()?.items ; track item.productId) {
           <div
           class="flex flex-col sm:flex-row items-center gap-6 border border-gray-200 rounded-2xl p-5 bg-white shadow-sm"
         >
@@ -27,12 +27,12 @@
               class="w-32 h-32 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 overflow-hidden"
             >
               <img
-                [src]="item.product.imageCover"
-                [alt]="item.product.title"
+                [src]="item.imageFile"
+                [alt]="item.productName"
                 class="object-cover mix-blend-multiply"
               />
             </div>
-             @if(item.product.quantity > 0){
+             @if(item.quantity > 0){
                 <span
               class="bg-[#138D46] text-white text-2xs font-bold px-3 py-1 rounded-full flex items-center gap-1"
             >
@@ -50,13 +50,13 @@
 
           <!-- product details  -->
           <div class="flex-1 w-full">
-            <h3 class="font-bold text-xl text-gray-900">{{item.product.title}}</h3>
+            <h3 class="font-bold text-xl text-gray-900">{{item.productName}}</h3>
             <div class="flex items-center gap-3 text-sm text-gray-500 mt-2">
               <span class="bg-green-50 text-[#138D46] px-3 py-1 rounded-full text-xs font-medium"
-                >{{item.product.category.name}}</span
+                >{{item.productName}}</span
               >
               <span class="text-gray-300">•</span>
-              <span class="text-xs">SKU: {{item.product._id.slice(0,6)}}</span>
+              <span class="text-xs">SKU: {{item.productId.slice(0,6)}}</span>
             </div>
             <div class="mt-4 font-bold text-[#138D46] text-xl">
               {{item.price}} EGP <span class="text-xs text-gray-400 font-normal">per unit</span>
@@ -69,16 +69,16 @@
           >
             <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden h-10">
               <button
-              (click)="update(item._id , item.count-1)"
+              (click)="update(item.productId , item.quantity - 1)"
                 class="px-3 h-full text-gray-500 hover:bg-gray-100 transition-colors focus:outline-hidden"
               >
                 <i class="fa-solid fa-minus text-xs"></i>
               </button>
 
-              <span class="px-3 font-bold text-gray-900 min-w-10 text-center">{{item.count}}</span>
+              <span class="px-3 font-bold text-gray-900 min-w-10 text-center">{{item.quantity}}</span>
 
               <button
-              (click)="update(item._id , item.count+1)"
+              (click)="update(item.productId , item.quantity+1)"
                 class="px-3 h-full bg-[#138D46] text-white hover:bg-green-700 transition-colors focus:outline-hidden"
               >
                 <i class="fa-solid fa-plus text-xs"></i>
@@ -88,12 +88,12 @@
             <div class="text-right min-w-16">
               <div class="text-xs text-gray-400 mb-0.5">Total</div>
               <div class="font-bold text-xl text-gray-900">
-                {{item.count * item.price}} <span class="text-xs font-normal">EGP</span>
+                {{item.quantity * item.price}} <span class="text-xs font-normal">EGP</span>
               </div>
             </div>
 
             <button
-            (click)="removeItem(item._id)"
+            (click)="removeItem(item.productId)"
               class="w-10 h-10 flex items-center justify-center bg-red-50 text-red-500 rounded-lg hover:bg-red-100 transition-colors focus:outline-hidden"
             >
               <i class="fa-regular fa-trash-can"></i>
@@ -150,7 +150,7 @@
             <div class="flex items-center gap-3 font-bold text-xl mb-1">
               <i class="fa-solid fa-lock text-green-200"></i> Order Summary
             </div>
-            <div class="text-sm text-green-100 font-medium">{{cartDetails().products.length}} items in your cart</div>
+            <div class="text-sm text-green-100 font-medium">{{basket()?.items?.length}} items in your cart</div>
           </div>
 
           <div class="p-6">
@@ -167,7 +167,7 @@
             <div class="space-y-4 text-base text-gray-600 mb-6">
               <div class="flex justify-between items-center">
                 <span>Subtotal</span>
-                <span class="font-bold text-gray-900">{{cartDetails().totalCartPrice}} EGP</span>
+                <span class="font-bold text-gray-900">{{basket()?.totalPrice}} EGP</span>
               </div>
               <div class="flex justify-between items-center">
                 <span>Shipping</span>
@@ -178,7 +178,7 @@
             <div class="flex justify-between items-end border-t border-gray-100 pt-5 mb-6">
               <span class="font-bold text-gray-900 text-lg">Total</span>
               <span class="font-black text-3xl text-gray-900">
-                {{cartDetails().totalCartPrice}} <span class="text-sm font-semibold text-gray-500">EGP</span>
+               {{basket()?.totalPrice}}  <span class="text-sm font-semibold text-gray-500">EGP</span>
               </span>
             </div>
 
@@ -189,7 +189,7 @@
             </button>
 
             <button
-            [routerLink]="['/checkout' , cartDetails()._id]"
+            [routerLink]="['/checkout' ]"
               class="w-full py-4 bg-[#138D46] text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 focus:outline-hidden hover:-translate-y-0.5 transform duration-200"
             >
               <i class="fa-solid fa-lock"></i> Secure Checkout

@@ -2,14 +2,18 @@ import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { BasketService } from '../../../core/services/basket.service';
 import { Basket } from '../../../core/models/basket/basket.model';
 import { AuthService } from '../../../core/services/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css',
 })
 export class ShoppingCartComponent implements OnInit {
+update(arg0: string,arg1: number) {
+throw new Error('Method not implemented.');
+}
 
 
   private readonly basketService = inject(BasketService);
@@ -27,9 +31,7 @@ export class ShoppingCartComponent implements OnInit {
       this.basket.set(basket);
     });
   }
-  update(arg0: any) {
-    throw new Error('Method not implemented.');
-  }
+ 
 
   removeItem(arg0: any) {
     throw new Error('Method not implemented.');
