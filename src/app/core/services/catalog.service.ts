@@ -34,7 +34,7 @@ export class CatalogService {
   }
 
   // ✅ GET BY ID
-  getProductById(id: number): Observable<Product> {
+  getProductById(id: string): Observable<Product> {
     return this.http.get<Product>(
       `${this.productUrl}/GetProductById/${id}`
     );
