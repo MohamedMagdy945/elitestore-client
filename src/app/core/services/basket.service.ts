@@ -63,7 +63,7 @@ export class BasketService {
   }
 
   checkout(model: CheckoutRequest): Observable<any> {
-  return this.http.post<any>(`${this.baseUrl}/checkout`, model).pipe(
+  return this.http.post<any>(`${this.basketUrl}/checkout`, model).pipe(
     tap(() => {
       this.basketCountSource.next(0);
       this.basketSource.next(null);

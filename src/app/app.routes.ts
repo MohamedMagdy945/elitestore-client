@@ -6,6 +6,7 @@ import { Login } from './features/auth/login/login';
 import { Home } from './shared/home/home';
 import { ShoppingCartComponent } from './features/basket/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './features/basket/checkout/checkout.component';
+import { SuccessOrderComponent } from './features/basket/success-order/success-order.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,10 @@ export const routes: Routes = [
             {
                 path: 'checkout',
                 component: CheckoutComponent
+            },
+             {
+                path: 'success-order',
+                component: SuccessOrderComponent
             },
             {
                 path: '',

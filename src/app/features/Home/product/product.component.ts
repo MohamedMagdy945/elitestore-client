@@ -7,6 +7,7 @@ import { DecimalPipe } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { BasketService } from '../../../core/services/basket.service';
 import { BasketItem } from '../../../core/models/basket/BasketItem.model';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-product',
@@ -20,6 +21,7 @@ export class ProductComponent {
   private readonly router = inject(Router);
   private readonly basketService = inject(BasketService);
   private readonly authService = inject(AuthService);
+  private readonly toastService = inject(ToastService);
   productList = signal<Product[]>([])
   private pageIndex = 1;
   private pageSize = 20;
@@ -33,6 +35,7 @@ export class ProductComponent {
     this.catelogService.getProducts(this.pageIndex, this.pageSize).subscribe({
       next: (res) => {
         this.productList.set(res.data);
+        this.toastService.show('Product retrieved successfully');
       },
       error: (err) => {
         console.log(err)
@@ -57,7 +60,7 @@ export class ProductComponent {
     this.basketService.getBasket(email).subscribe({
 
       next: (basket) => {
-        console.log(basket);
+        this.toastService.show('prodcut added successfully')
         if (!basket) {
           basket = {
             email: email,
@@ -87,7 +90,7 @@ export class ProductComponent {
         this.basketService.createBasket(basket).subscribe({
           next: () => {
             console.log('Basket updated');
-            
+
           },
           error: err => {
             console.error(err);

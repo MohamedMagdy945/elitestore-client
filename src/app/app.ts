@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BasketService } from './core/services/basket.service';
 import { AuthService } from './core/services/auth.service';
+import { ToastSuccessComponent } from './shared/components/toast-success/toast-success.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgxSpinnerModule],
+  imports: [RouterOutlet, NgxSpinnerModule, ToastSuccessComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
