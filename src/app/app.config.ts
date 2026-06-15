@@ -18,6 +18,7 @@ import {
 
 import { routes } from './app.routes';
 import { loadingInterceptor } from './core/interceptors/loading-interceptor';
+import { delayInterceptor } from './core/interceptors/delay.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
@@ -29,7 +30,10 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
 
     provideHttpClient(
-      withInterceptors([loadingInterceptor]),
+      withInterceptors([
+        loadingInterceptor,
+        delayInterceptor
+      ]),
       withFetch()
     )
   ]

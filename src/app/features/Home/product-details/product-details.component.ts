@@ -7,10 +7,11 @@ import { BasketService } from '../../../core/services/basket.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { BasketItem } from '../../../core/models/basket/BasketItem.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
