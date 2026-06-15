@@ -1,0 +1,134 @@
+<section class="max-w-4xl mx-auto py-10 px-4">
+
+  <div class="bg-white border border-gray-200 rounded-3xl shadow-sm p-6 sm:p-8">
+
+    <!-- SUCCESS HEADER -->
+    <div class="text-center mb-8">
+
+      <div class="flex justify-center mb-5">
+        <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
+          <i class="fa-solid fa-check text-4xl text-[#138D46]"></i>
+        </div>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+        Order Placed Successfully
+      </h1>
+
+      <p class="text-gray-500 mt-2 text-sm sm:text-base">
+        Thank you for your purchase. Your order is being processed.
+      </p>
+    </div>
+
+    <!-- ORDER STATUS (NEW SECTION LIKE IMAGE) -->
+    <div class="mb-8">
+      
+    </div>
+
+    <!-- ORDER DETAILS -->
+    <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 space-y-4">
+
+      <div class="flex justify-between text-sm sm:text-base">
+        <span class="text-gray-500">Order Number</span>
+        <span class="font-bold">#ORD-548729</span>
+      </div>
+
+      <div class="flex justify-between text-sm sm:text-base">
+        <span class="text-gray-500">Order Date</span>
+        <span class="font-semibold">{{ today | date:'dd MMM yyyy' }}</span>
+      </div>
+
+      <div class="flex justify-between text-sm sm:text-base">
+        <span class="text-gray-500">Payment Method</span>
+        <span class="font-semibold">Cash On Delivery</span>
+      </div>
+
+      <div class="border-t pt-4 flex justify-between">
+        <span class="font-bold">Total</span>
+        <span class="font-black text-xl text-[#138D46]">
+          180 EGP
+        </span>
+      </div>
+
+    </div>
+
+    <!-- EMAIL NOTICE -->
+    <div class="mt-6 bg-green-50 border border-green-200 rounded-2xl p-4 flex items-start gap-3">
+
+      <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white">
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+
+      <div>
+        <p class="font-bold text-[#138D46]">Confirmation Email Sent</p>
+        <p class="text-sm text-gray-600">
+          A confirmation email has been sent to your email address.
+        </p>
+      </div>
+
+    </div>
+<h2 class="font-bold text-gray-900 mb-4">Order Status</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <!-- Confirmed -->
+        <div class="border rounded-2xl p-4 text-center bg-green-50 border-green-200">
+          <div class="w-12 h-12 mx-auto rounded-full bg-green-600 flex items-center justify-center text-white mb-3">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h3 class="font-bold text-green-700">Confirmed</h3>
+          <p class="text-xs text-gray-500 mt-1">Order received</p>
+        </div>
+
+        <!-- Preparing -->
+        <div class="border rounded-2xl p-4 text-center  border-gray-200">
+          <div class="w-12 h-12 mx-auto rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3">
+            <i class="fa-solid fa-box"></i>
+          </div>
+          <h3 class="font-bold text-gray-700">Preparing</h3>
+          <p class="text-xs text-gray-500 mt-1">Packaging items</p>
+        </div>
+
+        <!-- Shipping -->
+        <div class="border rounded-2xl p-4 text-center border-gray-200">
+          <div class="w-12 h-12 mx-auto rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3">
+            <i class="fa-solid fa-truck"></i>
+          </div>
+          <h3 class="font-bold text-gray-700">Shipping</h3>
+          <p class="text-xs text-gray-500 mt-1">On the way</p>
+        </div>
+
+        <!-- Delivered -->
+        <div class="border rounded-2xl p-4 text-center  border-gray-200">
+          <div class="w-12 h-12 mx-auto rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mb-3">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <h3 class="font-bold text-gray-700">Delivered</h3>
+          <p class="text-xs text-gray-500 mt-1">Final destination</p>
+        </div>
+
+      </div>
+    <!-- BUTTONS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+
+      <button
+        routerLink="/shop"
+        class="bg-[#138D46] text-white py-3 rounded-2xl font-bold hover:bg-green-700 transition flex items-center justify-center gap-2"
+      >
+        <i class="fa-solid fa-bag-shopping"></i>
+        Continue Shopping
+      </button>
+
+      <button
+        routerLink="/orders"
+        class="border border-gray-200 py-3 rounded-2xl font-bold hover:bg-gray-50 transition flex items-center justify-center gap-2"
+      >
+        <i class="fa-solid fa-box"></i>
+        View Orders
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
