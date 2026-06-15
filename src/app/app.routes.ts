@@ -7,6 +7,7 @@ import { Home } from './shared/home/home';
 import { ShoppingCartComponent } from './features/basket/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './features/basket/checkout/checkout.component';
 import { SuccessOrderComponent } from './features/basket/success-order/success-order.component';
+import { ProductDetailsComponent } from './features/Home/product-details/product-details.component';
 
 export const routes: Routes = [
     {
@@ -26,16 +27,20 @@ export const routes: Routes = [
                 component: Register
             },
             {
-                path : 'basket',
-                component : ShoppingCartComponent
+                path: 'basket',
+                component: ShoppingCartComponent
             },
             {
                 path: 'checkout',
                 component: CheckoutComponent
             },
-             {
+            {
                 path: 'success-order',
                 component: SuccessOrderComponent
+            },
+            {
+                path: 'product-details/:id',
+                component: ProductDetailsComponent
             },
             {
                 path: '',
