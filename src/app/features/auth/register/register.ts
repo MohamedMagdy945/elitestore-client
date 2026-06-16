@@ -46,6 +46,8 @@ export class Register {
             } else {
               console.log(res.message);
             }
+            this.router.navigate(['/home']);
+
           },
           error: (err) => {
             console.log('Error:', err);
@@ -56,7 +58,7 @@ export class Register {
   testRefresh() {
     this.authService.refreshToken().subscribe({
       next: (res) => {
-        console.log('Refresh Success', res);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.error('Refresh Failed', err);
